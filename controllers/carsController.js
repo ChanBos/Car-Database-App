@@ -66,7 +66,8 @@ exports.getOlderCars = (req, res) => {
 exports.updateOneController = (req, res) => {
   Car.findByIdAndUpdate(
     req.params.id,
-    { new: true }({
+    { new: true },
+    {
       $set: {
         Model: req.body.Model,
         Make: req.body.Make,
@@ -75,7 +76,7 @@ exports.updateOneController = (req, res) => {
         Address: req.body.Address,
         previousOwners: req.body.previousOwners,
       },
-    })
+    }
   );
 
   Car.save()

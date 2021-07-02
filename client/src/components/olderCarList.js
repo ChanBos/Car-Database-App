@@ -9,59 +9,54 @@ import axios from "axios";
  */
 
 // Create the props that will be rendered for the table output
-const Car = (props) => (
+const Car = ({ _id, Model, Make, Registration, Owner }) => (
   <tr>
-    <td>{props.car._id}</td>
-    <td>{props.car.Model}</td>
-    <td>{props.car.Make}</td>
-    <td>{props.car.Registration}</td>
-    <td>{props.car.Owner}</td>
+    <td>{_id}</td>
+    <td>{Model}</td>
+    <td>{Make}</td>
+    <td>{Registration}</td>
+    <td>{Owner}</td>
   </tr>
 );
 
 // Set the initial state of cars.
-const CarList = () => {
-  const [olderCars, setOlderCars] = useState([]);
+const OlderCarList = () => {
+  const [cars, setCars] = useState([]);
 
   // Utilized the useEffect() hook to get/ read the information from the database and respond displaying the data. If an error occurs the error
   // will be logged to console.
   useEffect(() => {
     axios
-      .get("/cars/model?olderCars")
+      .get("cars/older/model?olderCars")
       .then((res) => {
         const data = res.data;
-        setOlderCars(data);
+        setCars(data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // Utilizing the map method to iterate over the array items and to display the necessary data. Calling this function in the <tbody> element.
-  const carList = () => {
-    return olderCars.map((oldercar) => {
-      return <Car car={oldercar} key={oldercar._id} />;
-    });
-  };
-
   return (
     <div id="listcontainer">
-      <h6>Car List</h6>
+      <h6>Looking for vintage models older 5 years?</h6>
       <table>
         <thead>
-          <tr>
+          <tr className="theaderrow">
             <th id="th-cell-left">ID</th>
             <th>Model</th>
             <th>Make</th>
             <th>Registration</th>
-            <th>Owner</th>
-            <th>Address</th>
-            <th id="th-cell-right">Previous Owners</th>
+            <th id="th-cell-right">Owner</th>
           </tr>
         </thead>
-        <tbody>{carList()}</tbody>
+        <tbody>
+          {cars.map((car) => (
+            <Car key={car._id} {...car} />
+          ))}
+        </tbody>
       </table>
     </div>
   );
 };
 
 // Exported CarList to App.js.
-export default CarList;
+export default OlderCarList;

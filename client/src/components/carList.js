@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 // Requiring Axios.
 import axios from "axios";
+// Imported components.
+import OlderCarList from "./olderCarList.js";
 
 /**
  * @param {*} props _id, Model, Make, Registration, Owner and Address.
@@ -9,15 +11,23 @@ import axios from "axios";
  */
 
 // Create the props that will be rendered for the table output
-const Car = (props) => (
+const Car = ({
+  _id,
+  Model,
+  Make,
+  Registration,
+  Owner,
+  Address,
+  previousOwners,
+}) => (
   <tr>
-    <td>{props.car._id}</td>
-    <td>{props.car.Model}</td>
-    <td>{props.car.Make}</td>
-    <td>{props.car.Registration}</td>
-    <td>{props.car.Owner}</td>
-    <td>{props.car.Address}</td>
-    <td>{props.car.previousOwners}</td>
+    <td>{_id}</td>
+    <td>{Model}</td>
+    <td>{Make}</td>
+    <td>{Registration}</td>
+    <td>{Owner}</td>
+    <td>{Address}</td>
+    <td>{previousOwners.map(({ name }) => name).join(", ")}</td>
   </tr>
 );
 
@@ -29,7 +39,7 @@ const CarList = () => {
   // will be logged to console.
   useEffect(() => {
     axios
-      .get("/cars/")
+      .get("cars/")
       .then((res) => {
         const data = res.data;
         setCars(data);
@@ -38,11 +48,11 @@ const CarList = () => {
   }, []);
 
   // Utilizing the map method to iterate over the array items and to display the necessary data. Calling this function in the <tbody> element.
-  const carList = () => {
-    return cars.map((currentcar) => {
-      return <Car car={currentcar} key={currentcar._id} />;
-    });
-  };
+  // const carList = () => {
+  //   return cars.map((currentcar) => {
+  //     return <Car car={currentcar} key={currentcar._id} />;
+  //   });
+  // };
 
   return (
     <div id="listcontainer">
@@ -59,8 +69,13 @@ const CarList = () => {
             <th id="th-cell-right">Previous Owners</th>
           </tr>
         </thead>
-        <tbody>{carList()}</tbody>
+        <tbody>
+          {cars.map((car) => (
+            <Car key={car._id} {...car} />
+          ))}
+        </tbody>
       </table>
+      <OlderCarList />
     </div>
   );
 };

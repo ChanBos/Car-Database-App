@@ -5,7 +5,6 @@ import "./App.css";
 // Imported components.
 import CarList from "./components/carList.js";
 import CarEdit from "./components/carEdit.js";
-// import Landing from "./components/landing.js";
 import Header from "./components/header.js";
 import Footer from "./components/footer.js";
 

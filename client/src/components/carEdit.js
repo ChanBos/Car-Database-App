@@ -48,19 +48,12 @@ const CarEdit = ({ cars, setCars }) => {
 
     axios
       .post("cars/create", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Model,
-          Make,
-          Owner,
-          Registration,
-          Address,
-          previousOwners,
-        }),
+        Model,
+        Make,
+        Owner,
+        Registration,
+        Address,
+        previousOwners,
       })
       .then((response) => {
         Swal.fire({
@@ -107,19 +100,12 @@ const CarEdit = ({ cars, setCars }) => {
 
     axios
       .put(`cars/updateOne/${id}`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Model: Model,
-          Make: Make,
-          Owner: Owner,
-          Registration: Registration,
-          Address: Address,
-          previousOwners: previousOwners,
-        }),
+        Model: Model,
+        Make: Make,
+        Owner: Owner,
+        Registration: Registration,
+        Address: Address,
+        previousOwners: previousOwners,
       })
       .then((response) => {
         Swal.fire({
@@ -165,19 +151,12 @@ const CarEdit = ({ cars, setCars }) => {
     e.preventDefault();
 
     axios
-      .put(`/cars/updateMany${Model}`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Make: Make,
-          Owner: Owner,
-          Registration: Registration,
-          Address: Address,
-          previousOwners: previousOwners,
-        }),
+      .put(`cars/updateMany${Model}`, {
+        Make: Make,
+        Owner: Owner,
+        Registration: Registration,
+        Address: Address,
+        previousOwners: previousOwners,
       })
       .then((response) => {
         Swal.fire({
@@ -221,13 +200,7 @@ const CarEdit = ({ cars, setCars }) => {
     e.preventDefault();
 
     axios
-      .delete(`cars/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
+      .delete(`cars/delete/${id}`)
       .then((response) => {
         Swal.fire({
           imageUrl: "./images/success.gif",
@@ -323,15 +296,12 @@ const CarEdit = ({ cars, setCars }) => {
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor="previousOwners">Previous Owners:</FormLabel>
-            {/* {Object.keys(cars).map((previousOwners, i) => ( */}
             <FormControl
-              // key={i}
               type="text"
               name="previousOwners"
               value={previousOwners || ""}
               onChange={(e) => setPreviousOwners(e.target.value)}
             />
-            {/* ))} */}
           </FormGroup>
           <FormGroup>
             <Button
