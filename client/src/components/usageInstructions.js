@@ -1,8 +1,7 @@
 // Imported React libraries and Component from React.
 import React, { useState } from "react";
 // Imported Modal and Button from React Bootstrap.
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { Modal, Button } from "react-bootstrap";
 // Imported icon from FontAwesome.
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -29,15 +28,11 @@ const UsageInstructions = () => {
 
   return (
     <div id="headersection2">
-      {/* <h3> */}
       <FontAwesomeIcon
         icon={faInfoCircle}
-        title="Usage Instructions"
+        title="View Older Cars"
         onClick={handleShow}
       />
-      {/* Usage Instructions
-      </h3> */}
-
       <Modal
         show={show}
         onHide={handleClose}
@@ -51,17 +46,23 @@ const UsageInstructions = () => {
         <Modal.Body>
           <p>
             To <b>CREATE</b> a new car enter the model, make, owner,
-            registration, and the address into the input fields. An ID will be
-            generated for you. Ensure that all the required information is
-            filled in to prevent errors from errors occurring. Click on the "
-            <b>Add</b>" button.
+            registration, address and previous owners into the input fields.
+            Click on the "<b>Add</b>" button. An ID will be generated for you.
           </p>
           <p>
-            To <b>UPDATE</b> an existing car entry enter the ID and make the
+            To <b>UPDATE ONE</b> existing car entry enter the ID and make the
             changes that you wish to make to the model, make, owner,
-            registration, and the address, by inputting the information into the
-            input fields. Ensure that all the fields are completed to prevent
-            errors from errors occurring. Click on the "<b>Update</b>" button.
+            registration, address and previous owners by inputting the
+            information into the input fields. Click on the "<b>x1 Update</b>"
+            button.
+          </p>
+          <p>
+            To <b>UPDATE MORE THAN ONE</b> existing car, enter the Model year
+            and make the changes that you wish to make to the make, owner,
+            registration, address and previous owners by inputting the
+            information into the input fields. Click on the "<b>+ Update</b>"
+            button. This feature allows you to populate the same information for
+            all car entries with the same model year.
           </p>
           <p>
             To <b>DELETE</b> an existing car entry enter the ID of the car entry
@@ -74,7 +75,8 @@ const UsageInstructions = () => {
           </p>
           <p>
             For any changes made an alert will appear confirming that the change
-            was successful.
+            was successful or whether an error has occured performing the
+            operation.
           </p>
         </Modal.Body>
         <Modal.Footer>

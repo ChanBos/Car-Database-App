@@ -60,7 +60,7 @@ const CarEdit = ({ cars, setCars }) => {
           imageUrl: "./images/success.gif",
           imageWidth: 150,
           imageHeight: 150,
-          imageAlt: "Error",
+          imageAlt: "Success",
           confirmButtonColor: "#007aff",
           width: 400,
           title: "SUCCESS!",
@@ -112,7 +112,7 @@ const CarEdit = ({ cars, setCars }) => {
           imageUrl: "./images/success.gif",
           imageWidth: 150,
           imageHeight: 150,
-          imageAlt: "Error",
+          imageAlt: "Success",
           confirmButtonColor: "#007aff",
           width: 400,
           title: "SUCCESS!",
@@ -151,7 +151,7 @@ const CarEdit = ({ cars, setCars }) => {
     e.preventDefault();
 
     axios
-      .put(`cars/updateMany${Model}`, {
+      .put(`cars/updateMany/${Model}`, {
         Make: Make,
         Owner: Owner,
         Registration: Registration,
@@ -159,16 +159,18 @@ const CarEdit = ({ cars, setCars }) => {
         previousOwners: previousOwners,
       })
       .then((response) => {
+        console.log(response);
         Swal.fire({
           imageUrl: "./images/success.gif",
           imageWidth: 150,
           imageHeight: 150,
-          imageAlt: "Error",
+          imageAlt: "Success",
           confirmButtonColor: "#007aff",
           width: 400,
           title: "SUCCESS!",
         });
         setCars(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -202,15 +204,16 @@ const CarEdit = ({ cars, setCars }) => {
     axios
       .delete(`cars/delete/${id}`)
       .then((response) => {
-        Swal.fire({
-          imageUrl: "./images/success.gif",
-          imageWidth: 150,
-          imageHeight: 150,
-          imageAlt: "Error",
-          confirmButtonColor: "#007aff",
-          width: 400,
-          title: "SUCCESS!",
-        });
+        if (response.status === 200 && response.data === "Applied successfully")
+          Swal.fire({
+            imageUrl: "./images/success.gif",
+            imageWidth: 150,
+            imageHeight: 150,
+            imageAlt: "Success",
+            confirmButtonColor: "#007aff",
+            width: 400,
+            title: "SUCCESS!",
+          });
         setCars(response.data);
       })
       .catch((error) => {

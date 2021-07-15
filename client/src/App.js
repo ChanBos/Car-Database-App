@@ -10,7 +10,6 @@ import Footer from "./components/footer.js";
 
 /**
  * Created the App function and returning components to be exported to Index.js.
- * Used "BrowserRouter", "Switch and "Route" to show components to manage the navigation of the application.
  * Added the React Bootstrap link.
  * @returns Application that returns all of the components.
  */

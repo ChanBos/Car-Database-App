@@ -1,5 +1,5 @@
 /* --- Header --- */
-/* Set for the header to display as flex and the direction to row. Also set the size (height x width), the margins, padding, background colour,
+/* Set for the header to display as a grid and set the columns. Also set the size (height x width), the margins, padding, background colour,
 font colour and set the alignment and justification to center. */
 .App-header {
   display: grid;
@@ -60,7 +60,7 @@ to be rotated on the 50% axis and to rotate 720 degrees. */
 }
 
 /* --- Modal --- */
-/* Set the top margin of the modal's close button. */
+/* Set the top and the right margins of the modal's close button. */
 .close {
   margin-top: -10px !important;
   margin-right: 2px !important;
@@ -87,7 +87,7 @@ to be rotated on the 50% axis and to rotate 720 degrees. */
   margin-left: 10px;
 }
 
-/* Set the margins of the modal footer's text. */
+/* Set the left and top margins of the modal footer's text. */
 #modalfootertext {
   margin-top: 35px;
   margin-left: 15px;
@@ -100,7 +100,7 @@ to be rotated on the 50% axis and to rotate 720 degrees. */
 }
 
 /* --- App Container --- */
-/* Set for the container to appear as a grid and set the frames, margins and padding. */
+/* Set for the container to appear as a grid and set the frames, font size, margins and padding. */
 .container {
   display: flex;
   flex-direction: row;
@@ -115,13 +115,13 @@ form {
   width: 360px;
 }
 
-/* Set the font weight of the form's labels. */
+/* Set the font weight and top margins of the form's labels. */
 label {
   font-weight: bold;
   margin-top: 1.5px;
 }
 
-/* Set the bottom margin of the form's different sections. */
+/* Set the top and bottom margins of the form's different sections. */
 .form-group {
   margin: 1px 0px !important;
 }
@@ -135,12 +135,12 @@ label {
 
 /* Set the margins, padding, background colour and border (styled, coloured and sized) of the form's buttons.*/
 .btn-primary {
-  background-color: #000000 !important;
   margin-top: 6px;
   margin-left: 2.2px;
   margin-right: 2.2px;
-  padding: 5px 7px !important;
+  padding: 4.5px 7px !important;
   border: 1px solid #9f20c2 !important;
+  background-color: #000000 !important;
 }
 
 /* Set for the form buttons' font colour to change once hovered over. Also set a box shadow (coloured and sized) to create a glow effect. */
@@ -167,7 +167,7 @@ label {
 }
 
 /* --- Table Section --- */
-/* Set the left margin and the font weight of the table's heading. */
+/* Set the left padding and the font weight of the table's heading. */
 h6 {
   padding-left: 8px !important;
   font-weight: bold !important;
@@ -183,31 +183,56 @@ table {
   width: 930px;
 }
 
-/* Set the table header cells' bottom padding and added a border (styled, coloured and sized). */
+/* Set the table header cells' bottom padding, set a gradient background and set for the tegxt to appear on a single line, by using no-wrap. */
 th {
   padding: 7px 8px !important;
   color: #ffffff;
-  background-color: #000000;
   background-color: #000000;
   background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
   white-space: nowrap;
 }
 
 /* Adjusted the top-left and bottom-left border raduises of the first table header cell. */
-#th-cell-left {
+.th-cell-left {
   border-radius: 5px 0px 0px 5px;
 }
 
 /* Adjusted the top-right and bottom-right border raduises of the first table header cell. */
-#th-cell-right {
+.th-cell-right {
   border-radius: 0px 5px 5px 0px;
 }
 
-/* Set the table header cells', vertical alignment, bottom padding, font size and added a border (styled, coloured and sized). */
+/* Set the table header cells' vertical alignment, padding and font size. */
 td {
   vertical-align: text-top;
   padding: 7px;
   border-bottom: 1px #0000002f solid;
+}
+
+/* --- Older Cars Modal --- */
+/* Set for the older cars' container to display as flex and the direction to row. Also set the width and the top and left margins. */
+#oldercarscontainer {
+  display: flex;
+  flex-direction: row;
+  width: 490px;
+  margin-top: 12px;
+  margin-left: -20px;
+}
+
+/* Set the top and right margins of the modal's header. */
+#oldercarsheader {
+  margin-top: 13px !important;
+  margin-right: 10px !important;
+}
+
+/* Set for the modal's content's justification to be centered. */
+#oldercarsmodal {
+  justify-content: center;
+}
+
+/* Set the width of the modal's content. */
+.modal-content {
+  width: 970px !important;
 }
 
 /* --- Footer --- */
@@ -229,7 +254,7 @@ h6 {
   color: #000000;
 }
 
-/* Set the bottom margin, the font size of the "Scroll to Top" icon and for the cursor to change once the icon is hovered over. */
+/* Set the bottom and top margins, the font size of the "Scroll to Top" icon and for the cursor to change once the icon is hovered over. */
 .fa-angle-double-up {
   margin-bottom: -4px !important;
   margin-right: 35px;

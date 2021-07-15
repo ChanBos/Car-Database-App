@@ -46,7 +46,11 @@ console.log(
   `mongodb+srv://${dbConfig.DB_USERNAME}:${dbConfig.DB_PASSWORD}@cluster1.4xta9.mongodb.net/test?retryWrites=true&w=majority`
 );
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
 console.log(uri);
 
 // Should an error occur connecting to the MongoDB database, a message will be logged to the console as a notification of the error.

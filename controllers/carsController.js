@@ -64,22 +64,20 @@ exports.getOlderCars = (req, res) => {
 
 // Fetching the information of one car by id for updating. Using $set to set the information for the relevant car with the matching id.
 exports.updateOneController = (req, res) => {
-  Car.findByIdAndUpdate(
+  Car.findOneAndUpdate(
     req.params.id,
-    { new: true },
     {
       $set: {
         Model: req.body.Model,
         Make: req.body.Make,
         Owner: req.body.Owner,
-        Registration: req.body.registration,
+        Registration: req.body.Registration,
         Address: req.body.Address,
         previousOwners: req.body.previousOwners,
       },
-    }
-  );
-
-  Car.save()
+    },
+    { new: true }
+  )
     .then((cars) => res.json(cars))
     .catch((err) => res.status(400).json("Error updating the car." + err));
 };
@@ -89,13 +87,13 @@ exports.updateOneController = (req, res) => {
 exports.updateManyController = (req, res) => {
   Car.updateMany(
     {
-      Model: req.body.Model,
+      Model: req.params.Model,
     },
     {
       $set: {
         Make: req.body.Make,
         Owner: req.body.Owner,
-        Registration: req.body.registration,
+        Registration: req.body.Registration,
         Address: req.body.Address,
         previousOwners: req.body.previousOwners,
       },
@@ -118,5 +116,5 @@ exports.updateManyController = (req, res) => {
 exports.removeOneController = (req, res) => {
   Car.findByIdAndRemove(req.params.id)
     .then((cars) => res.json(cars))
-    .catch((err) => res.status(400).json("Error deleting the car." + err));
+    .catch((err) => res.status(400).json({message: "Error deleting the car." + err}));
 };

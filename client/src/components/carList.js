@@ -6,11 +6,23 @@ import axios from "axios";
 import OlderCarList from "./olderCarList.js";
 
 /**
- * @param {*} props _id, Model, Make, Registration, Owner and Address.
+ * Created a new array for the previous owners, iterated over the items and pushing and returning the data by joining them by a ", ".
+ * @param {*} props _id, Model, Make, Registration, Owner, Address, previousOwners.
  * @returns A table that displays all of the above mentioned information from the database.
  */
 
-// Create the props that will be rendered for the table output
+const getPreviousOwners = (inputArray) => {
+  let newArray = [];
+
+  if (inputArray[0]) {
+    for (const owner in inputArray[0]) {
+      const currentPreviousOwner = inputArray[0][owner];
+      newArray.push(currentPreviousOwner);
+    }
+  }
+  return newArray.join(", ");
+};
+
 const Car = ({
   _id,
   Model,
@@ -27,7 +39,7 @@ const Car = ({
     <td>{Registration}</td>
     <td>{Owner}</td>
     <td>{Address}</td>
-    <td>{previousOwners.map(({ name }) => name).join(", ")}</td>
+    <td>{getPreviousOwners(previousOwners)}</td>
   </tr>
 );
 
@@ -39,7 +51,7 @@ const CarList = () => {
   // will be logged to console.
   useEffect(() => {
     axios
-      .get("cars/")
+      .get("cars")
       .then((res) => {
         const data = res.data;
         setCars(data);
@@ -47,26 +59,19 @@ const CarList = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Utilizing the map method to iterate over the array items and to display the necessary data. Calling this function in the <tbody> element.
-  // const carList = () => {
-  //   return cars.map((currentcar) => {
-  //     return <Car car={currentcar} key={currentcar._id} />;
-  //   });
-  // };
-
   return (
     <div id="listcontainer">
       <h6>Car List</h6>
       <table>
         <thead>
           <tr className="theaderrow">
-            <th id="th-cell-left">ID</th>
+            <th className="th-cell-left">ID</th>
             <th>Model</th>
             <th>Make</th>
             <th>Registration</th>
             <th>Owner</th>
             <th>Address</th>
-            <th id="th-cell-right">Previous Owners</th>
+            <th className="th-cell-right">Previous Owners</th>
           </tr>
         </thead>
         <tbody>

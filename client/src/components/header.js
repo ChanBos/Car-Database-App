@@ -4,7 +4,7 @@ import React from "react";
 import UsageInstructions from "./usageInstructions";
 
 /**
- * Created a header for the application that includes a logo and also added the Navigation component.
+ * Created a header for the application that includes a logo and also added the UsageInstructions component.
  * @returns A header with a logo and usage instructions button and modal.
  */
 
