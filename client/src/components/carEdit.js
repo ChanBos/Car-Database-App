@@ -18,13 +18,11 @@ import { faPlus, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 
 /**
- * @param {*} cars
- * @param {*} setCars
- * Created a search component with an input area, dropdown menu for the categories and a search button.
- * Set the initial states of the prop values using the useState() hook.
+ * Used the useState() hook to set the initial values of the props.
+ * @returns The initial states of the prop values.
  */
 
-const CarEdit = ({ cars, setCars }) => {
+const CarEdit = () => {
   const [id, setId] = useState("");
   const [Model, setModel] = useState("");
   const [Make, setMake] = useState("");
@@ -35,12 +33,11 @@ const CarEdit = ({ cars, setCars }) => {
 
   /**
    * Assigned an event.preventDefault() method to ensure that the page is not refreshed once the create function is executed.
-   * Fetching the content from http://localhost:8080/api/create. Utilizing the Post method and added a header to set the content type to JSON.
-   * Added the necessary props to alocate values to and stringified the content to be added to the JSON file.
+   * Fetching the content from http://localhost:8080/cars/create. Utilizing the Post method.
+   * Added the necessary props to alocate values to be written to the database.
    * If successful a modal (Sweetalert2 - Swal.fire) will appear to confirm success and the content will be added to the UI as objects.
-   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error. An error will occur if all the information is not
-   * entered as set in the backend/ server side and the content will be returned unchanged.
-   * @param {*} e Posting content to JSON as a string and returning the content as objects to the UI.
+   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error.
+   * @param {*} e Posting content to the database and returning the content as objects to the UI.
    */
 
   const create = (e) => {
@@ -61,14 +58,15 @@ const CarEdit = ({ cars, setCars }) => {
           imageWidth: 150,
           imageHeight: 150,
           imageAlt: "Success",
-          confirmButtonColor: "#007aff",
+          confirmButtonColor: "#000000",
           width: 400,
           title: "SUCCESS!",
+          text: response.data.message,
+        }).then(function () {
+          window.location.reload();
         });
-        setCars(response.data);
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           imageUrl: "./images/exclamation.gif",
           imageWidth: 150,
@@ -77,7 +75,7 @@ const CarEdit = ({ cars, setCars }) => {
           confirmButtonColor: "#ff0000",
           width: 400,
           title: "ERROR!",
-          text: "User data missing",
+          text: error,
         }).then(function () {
           window.location.reload();
         });
@@ -86,13 +84,11 @@ const CarEdit = ({ cars, setCars }) => {
 
   /**
    * Assigned an event.preventDefault() method to ensure that the page is not refreshed once the update function is executed.
-   * Fetching the content from http://localhost:8080/api/update/ (an ID should be entered to update that specific car). Utilizing the
-   * Put method and added a header to set the content type to JSON.
-   * Added the necessary props to alocate values to and stringified the content to be added to the JSON file.
+   * Fetching the content from http://localhost:8080/cars/updateOne/:id. Utilizing the Put method.
+   * Added the necessary props to alocate values to be written to the database.
    * If successful a modal (Sweetalert2 - Swal.fire) will appear to confirm success and the content will be added to the UI as objects.
-   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error. An error will occur if all the information is not
-   * entered as set in the backend/ server side and the content will be returned unchanged.
-   * @param {*} e Updating content, that exists in the JSON file, as a string and returning the content as objects to the UI.
+   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error.
+   * @param {*} e Updating content of one car, that exists in the database, and returning the content as objects to the UI via the modal year.
    */
 
   const updateOne = (e) => {
@@ -113,14 +109,15 @@ const CarEdit = ({ cars, setCars }) => {
           imageWidth: 150,
           imageHeight: 150,
           imageAlt: "Success",
-          confirmButtonColor: "#007aff",
+          confirmButtonColor: "#000000",
           width: 400,
           title: "SUCCESS!",
+          text: response.data.message,
+        }).then(function () {
+          window.location.reload();
         });
-        setCars(response.data);
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           imageUrl: "./images/exclamation.gif",
           imageWidth: 150,
@@ -129,7 +126,7 @@ const CarEdit = ({ cars, setCars }) => {
           confirmButtonColor: "#ff0000",
           width: 400,
           title: "ERROR!",
-          text: "User data missing",
+          text: error.response.data.message,
         }).then(function () {
           window.location.reload();
         });
@@ -138,13 +135,11 @@ const CarEdit = ({ cars, setCars }) => {
 
   /**
    * Assigned an event.preventDefault() method to ensure that the page is not refreshed once the update function is executed.
-   * Fetching the content from http://localhost:8080/api/update/ (an ID should be entered to update that specific car). Utilizing the
-   * Put method and added a header to set the content type to JSON.
-   * Added the necessary props to alocate values to and stringified the content to be added to the JSON file.
+   * Fetching the content from http://localhost:8080/cars/updateMany/:id. Utilizing the Put method.
+   * Added the necessary props to alocate values to be written to the database.
    * If successful a modal (Sweetalert2 - Swal.fire) will appear to confirm success and the content will be added to the UI as objects.
-   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error. An error will occur if all the information is not
-   * entered as set in the backend/ server side and the content will be returned unchanged.
-   * @param {*} e Updating content, that exists in the JSON file, as a string and returning the content as objects to the UI.
+   * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error.
+   * @param {*} e Updating content of one car, that exists in the database, and returning the content as objects to the UI via the model year.
    */
 
   const updateMany = (e) => {
@@ -159,21 +154,20 @@ const CarEdit = ({ cars, setCars }) => {
         previousOwners: previousOwners,
       })
       .then((response) => {
-        console.log(response);
         Swal.fire({
           imageUrl: "./images/success.gif",
           imageWidth: 150,
           imageHeight: 150,
           imageAlt: "Success",
-          confirmButtonColor: "#007aff",
+          confirmButtonColor: "#000000",
           width: 400,
           title: "SUCCESS!",
+          text: response.data.message,
+        }).then(function () {
+          window.location.reload();
         });
-        setCars(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           imageUrl: "./images/exclamation.gif",
           imageWidth: 150,
@@ -182,7 +176,7 @@ const CarEdit = ({ cars, setCars }) => {
           confirmButtonColor: "#ff0000",
           width: 400,
           title: "ERROR!",
-          text: "User data missing",
+          text: error.response.data.message,
         }).then(function () {
           window.location.reload();
         });
@@ -191,11 +185,11 @@ const CarEdit = ({ cars, setCars }) => {
 
   /**
    * Assigned an event.preventDefault() method to ensure that the page is not refreshed once the delete function is executed.
-   * Fetching the content from http://localhost:8080/api/delete/ (an ID should be entered to update that specific car). Utilizing the
-   * Delete method and added a header to set the content type to JSON.
-   * If successful a modal (Sweetalert2 - Swal.fire) will appear to confirm success and the content will be removed from the JSON file and UI.
+   * Fetching the content from http://localhost:8080/cars/delete/:id. Utilizing the Delete method.
+   * Added the necessary props to remove values from the database.
+   * If successful a modal (Sweetalert2 - Swal.fire) will appear to confirm success and the content will be added to the UI as objects.
    * If unsuccessful a modal (Sweetalert2 - Swal.fire) will appear displaying an error.
-   * @param {*} e Deleting content that exists in the JSON file.
+   * @param {*} e Deleting content that exists in the database via id.
    */
 
   const remove = (e) => {
@@ -204,20 +198,20 @@ const CarEdit = ({ cars, setCars }) => {
     axios
       .delete(`cars/delete/${id}`)
       .then((response) => {
-        if (response.status === 200 && response.data === "Applied successfully")
-          Swal.fire({
-            imageUrl: "./images/success.gif",
-            imageWidth: 150,
-            imageHeight: 150,
-            imageAlt: "Success",
-            confirmButtonColor: "#007aff",
-            width: 400,
-            title: "SUCCESS!",
-          });
-        setCars(response.data);
+        Swal.fire({
+          imageUrl: "./images/success.gif",
+          imageWidth: 150,
+          imageHeight: 150,
+          imageAlt: "Success",
+          confirmButtonColor: "#000000",
+          width: 400,
+          title: "SUCCESS!",
+          text: response.data.message,
+        }).then(function () {
+          window.location.reload();
+        });
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           imageUrl: "./images/exclamation.gif",
           imageWidth: 150,
@@ -226,6 +220,7 @@ const CarEdit = ({ cars, setCars }) => {
           confirmButtonColor: "#ff0000",
           width: 400,
           title: "ERROR!",
+          text: error.response.data.message,
         }).then(function () {
           window.location.reload();
         });
@@ -233,10 +228,10 @@ const CarEdit = ({ cars, setCars }) => {
   };
 
   /**
-   * Added the handleChange() function to the onChange() event to set the new values of the props when values are entered into the input
+   * Added the props to be set when the onChange() event is triggered to set the new values of the props when values are entered into the input
    * elements.
    * Created buttons for the cars app. Passed onClick() events to create, update and delete cars.
-   * @returns Form with labels, input and button elements that can be used to add, update and delete cars.
+   * @returns Form with labels, input and button elements that can be used to add, update one or many cars and delete cars.
    */
 
   return (

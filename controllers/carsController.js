@@ -23,8 +23,8 @@ exports.createController = (req, res) => {
   });
   car
     .save()
-    .then((cars) => res.json(cars))
-    .catch((err) => res.status(400).json("Error creating the car." + err));
+    .then((cars) => res.json({ message: "Car created successfully.", cars }))
+    .catch((err) => res.status(400).json("Error creating the car.", err));
 };
 
 /**
@@ -40,7 +40,7 @@ exports.getAllController = (req, res) => {
   Car.find()
     .then((cars) => res.json(cars))
     .catch((err) =>
-      res.status(400).json("Error getting the cars' information." + err)
+      res.status(400).json("Error getting the cars' information.", err)
     );
 };
 
@@ -49,7 +49,7 @@ exports.getOlderCars = (req, res) => {
   Car.find({ Model: { $lt: 2016 } })
     .then((cars) => res.json(cars))
     .catch((err) =>
-      res.status(400).json("Error getting the cars' information." + err)
+      res.status(400).json("Error getting the cars' information.", err)
     );
 };
 
@@ -78,8 +78,8 @@ exports.updateOneController = (req, res) => {
     },
     { new: true }
   )
-    .then((cars) => res.json(cars))
-    .catch((err) => res.status(400).json("Error updating the car." + err));
+    .then((cars) => res.json({ message: "Car updated successfully.", cars }))
+    .catch((err) => res.status(400).json("Error updating the car.", err));
 };
 
 // Allowing a user to update more than one car, using the model year of the car. Using $set to set the information for the relevant cars with
@@ -99,8 +99,8 @@ exports.updateManyController = (req, res) => {
       },
     }
   )
-    .then((cars) => res.json(cars))
-    .catch((err) => res.status(400).json("Error updating the car." + err));
+    .then((cars) => res.json({ message: "Cars updated successfully.", cars }))
+    .catch((err) => res.status(400).json("Error updating the car.", err));
 };
 
 /**
@@ -115,6 +115,8 @@ exports.updateManyController = (req, res) => {
 // Fetching the information of one car by id for deletion.
 exports.removeOneController = (req, res) => {
   Car.findByIdAndRemove(req.params.id)
-    .then((cars) => res.json(cars))
-    .catch((err) => res.status(400).json({message: "Error deleting the car." + err}));
+    .then((cars) => res.json({ message: "Car deleted successfully.", cars }))
+    .catch((err) =>
+      res.status(400).json({ message: "Error deleting the car.", err })
+    );
 };

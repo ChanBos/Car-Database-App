@@ -4,10 +4,6 @@ const express = require("express");
 const app = express();
 // Requiring CORS.
 const cors = require("cors");
-// Requiring the routes index.js file.
-// const routes = require("./routes/car.router.js");
-// Requiring configuration.
-// const dbConfig = require("./config/mongodb.config.js");
 // Requiring body-parser.
 const bodyParser = require("body-parser");
 // Requiring Mongoose.

@@ -24,7 +24,7 @@ const Footer = () => {
     <div id="footer">
       <Container fluid>
         <Row>
-          <h6>
+          <h6 id="footerheader">
             CREATED WITH <FontAwesomeIcon icon={faHeart} />
             BY CHANELLE BÖSIGER
           </h6>

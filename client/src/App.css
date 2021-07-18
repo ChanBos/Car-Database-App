@@ -6,7 +6,7 @@ font colour and set the alignment and justification to center. */
   grid-template-columns: 1fr 1fr;
   height: 95px;
   width: 100%;
-  margin: 0px auto -5px;
+  margin: 0px auto -10px;
   padding: 0px;
   background-color: #ffffff;
   align-items: center;
@@ -168,8 +168,8 @@ label {
 
 /* --- Table Section --- */
 /* Set the left padding and the font weight of the table's heading. */
-h6 {
-  padding-left: 8px !important;
+#tableheader {
+  padding-left: 7px !important;
   font-weight: bold !important;
 }
 
@@ -243,22 +243,29 @@ td {
   background-color: transparent !important;
 }
 
-/* Set the font colour and the margins of the footer's header text. */
-h6 {
+/* Set the font colour and weight, the top padding and the margins of the footer's header text. Also added a top border (styled, colored and 
+sized). */
+#footerheader {
   margin: 5px auto !important;
+  padding-top: 5px;
+  width: 325px;
+  text-align: center;
+  font-weight: bold;
   color: #000000;
+  border-top: 1px solid #000000;
 }
 
-/* Set the font colour of the footer's heart icon. */
+/* Set the font colour of the footer's heart icon. Also implemented a drop-shadow filter do give the icon a 3D and defined look. */
 .fa-heart {
-  color: #000000;
+  color: #9f20c2;
+  filter: drop-shadow(1px 2px 2px #000000);
 }
 
 /* Set the bottom and top margins, the font size of the "Scroll to Top" icon and for the cursor to change once the icon is hovered over. */
 .fa-angle-double-up {
-  margin-bottom: -4px !important;
+  margin-bottom: -10px !important;
   margin-right: 35px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   cursor: pointer;
 }
 

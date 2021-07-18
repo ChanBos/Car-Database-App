@@ -61,7 +61,7 @@ const CarList = () => {
 
   return (
     <div id="listcontainer">
-      <h6>Car List</h6>
+      <h6 id="tableheader">Car List</h6>
       <table>
         <thead>
           <tr className="theaderrow">
