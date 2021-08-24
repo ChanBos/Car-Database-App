@@ -31,8 +31,10 @@ app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
 
-// Enabling app to use Helmet to secure the code.
-app.use(helmet());
+// Enabling app to use Helmet to secure the code. Disabled the `contentSecurityPolicy` middleware (keeps the rest) due to inline script errors.
+app.use(helmet({
+  contentSecurityPolicy: false,
+}));
 
 // Enabling the connection to MongoDB via the uri from the config file.
 // Added useNewUrlParser flag to allow falling back to the old parser should a bug be found in the new parser.
