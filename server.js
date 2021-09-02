@@ -65,6 +65,15 @@ mongoose.connection.once("open", function () {
 // Enabling the api app to use the routes carsRouter.js file.
 app.use("/cars", carRoutes);
 
+// Checking if the process is production mode and set for the index.html file from the build folder to be utilized, instead of the public folder.
+const path = require("path");
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 // Specified to listen to port 8080's HTTP requests. Modified the port code in order to deploy the app to Heroku.
 // Logging a response to the console to confirm that the server is listening to port 8080.
 const PORT = process.env.PORT || 8080;
