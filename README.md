@@ -10,6 +10,10 @@
 
 > MERN Stack Car Application
 
+![Car App](https://github.com/ChanBos/My-Developer-Portfolio/blob/master/static/images/CarDatabase.png)
+
+### ✨ [Deployed application](https://mern-car-database-app.herokuapp.com/)
+
 ## Table of Contents:
 
 - [Prerequisites](#prerequisites)
